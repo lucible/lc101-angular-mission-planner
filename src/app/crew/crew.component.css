@@ -1,0 +1,13 @@
+.flex {
+    display: flex;
+    flex-direction: column;
+}
+
+.remove {
+    margin-left: 5px;
+}
+
+.flex input, .flex button {
+    margin: .5em 0;
+}
+
