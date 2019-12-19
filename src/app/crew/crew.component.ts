@@ -20,10 +20,44 @@ export class CrewComponent implements OnInit {
     {name: "Jeanette Epps", photo: 'https://handlers.education.launchcode.org/static/images/jeanette-epps.jpg'}
   ];
 
+  selected : boolean[] = [false, false, false, false, false, false, false]
+  full : string = ''
+  showAstro : boolean = false
+  astroShown : object
+
   constructor() { }
 
   ngOnInit() { }
 
   // Code the 'addCrewMember' function here:
+  addCrewMember (candidate : object) {
+    if (this.crew.includes(candidate)) {
+      this.inCrew = true
+    }
+    if (this.crew.includes(candidate)) {
+      this.crew.indexOf(candidate)
+      this.crew.splice(this.crew.indexOf(candidate), 1)
+      this.selected[this.candidates.indexOf(candidate)] = false
+      if (this.crew.length !== 3) {
+        this.full = ''
+      }
+    } else if (this.candidates.includes(candidate) && this.crew.length < 3) {
+      this.crew.push(candidate)
+      this.selected[this.candidates.indexOf(candidate)] = true
+      if (this.crew.length === 3) {
+        this.full = 'Full'
+      }
+    }
+  }
+
+  hoverCrew (member : object, bool : boolean) {
+    if (bool === true) {
+      this.astroShown = member
+      this.showAstro = true
+    } else {
+      this.astroShown = {}
+      this.showAstro = false
+    }
+  }
 
 }
