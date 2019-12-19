@@ -1,8 +1,9 @@
 <div class="displayBox">
     <h3>Equipment</h3>
     <ol>
-        <li *ngFor="let item of equipmentItems">
+        <li *ngFor="let item of equipmentItems; let i = index">
             <!-- "Add to Cargo Hold" button goes here. -->
+            <button [class.active]="!inactive[i]" (click)="addItem(item)" [disabled]="inactive[i]">Add to Cargo Hold</button>
             {{item.name}}, {{item.mass}} kg
         </li>
     </ol>
@@ -16,7 +17,8 @@
         <li *ngFor="let equipment of cargoHold">{{equipment.name}}</li>
     </ol>
     <p>Mass in Hold: {{cargoMass}} kg</p>
-    <p>Mass Budget Remaining: {{<!-- Calculate mass remaining here. -->}} kg</p>
+    <p [class.nearMaxMass]="nearMaxMass">Mass Budget Remaining: {{ massRemaining }} kg</p>
     <!-- Add the "Empty Hold" button here. -->
+    <button (click)="emptyHold()">Empty Hold</button>
 </div>
 
